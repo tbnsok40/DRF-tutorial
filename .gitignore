@@ -1,5 +1,8 @@
 venv
 db.sqlite3
+.idea
+img.png
+img_1.png
 
 
 # dependencies
@@ -19,3 +22,5 @@ django-react/.env.production.local
 django-react/npm-debug.log*
 django-react/yarn-debug.log*
 django-react/yarn-error.log*
+
+django-react/.idea
