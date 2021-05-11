@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m9f0(1@*o&p)fn2b)1t%r67lbctt2p=8e4n2%w2hohxr+2fy@9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -37,10 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'api_user'
+    'api_user',
+    'corsheaders',
 ]
 
+CORS_ORIGIN_WHITELIST = ['http://localhost:3000']
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',  # 추가
+    'django.middleware.common.CommonMiddleware',  # 추가
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',

@@ -4,7 +4,7 @@ from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer
-from rest_framework import status
+from rest_framework import status, mixins, generics
 from .models import User
 
 
@@ -68,3 +68,15 @@ class UserView(APIView):
             user_object = User.objects.get(id=user_id)
             user_object.delete()
             return Response("Object Deleted", status=status.HTTP_200_OK)
+
+
+# Mixin 사용
+# class UserList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
+#     queryset = User.objects.all()
+#     serializer_class = UserSerializer
+#
+#     def get(self, request, *args, **kwargs):
+#         return self.list(request, *args, **kwargs)
+#
+#     def post(self, request, *args, **kwargs):
+#         return self.create(request, *args, **kwargs)
