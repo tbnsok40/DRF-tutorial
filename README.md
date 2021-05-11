@@ -4,9 +4,9 @@
 
 
 > ### Goal
->- REST API in DRF : GET, POST, UPDATE, DELETE
->- Test in POSTMAN
->- Connect Frontend with React Server
+>✅ REST API: GET, POST, UPDATE, DELETE <br/>
+>✅ Test in POSTMAN <br/>
+>☑️ Connect Frontend with React Server
 
 
 > trouble shooting 
