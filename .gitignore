@@ -1,3 +1,21 @@
 venv
 db.sqlite3
-.idea
+
+
+# dependencies
+django-react/node_modules
+django-react/.pnp
+django-react/.pnp.js
+# testing
+django-react/coverage
+# production
+django-react/build
+# misc
+django-react/.DS_Store
+django-react/.env.local
+django-react/.env.development.local
+django-react/.env.test.local
+django-react/.env.production.local
+django-react/npm-debug.log*
+django-react/yarn-debug.log*
+django-react/yarn-error.log*
