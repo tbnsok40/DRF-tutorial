@@ -5,9 +5,26 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from rest_framework import status
+from .models import User
 
 
 class UserView(APIView):
+
+    """
+    GET /user
+    GET /user/{user_id}
+    """
+
+    def get(self, request, **kwargs):
+        if kwargs.get("user_id") is None:
+            user_queryset = User.objects.all()
+            user_queryset_serializer = UserSerializer(user_queryset, many=True) # what is many = True
+            return Response(user_queryset_serializer.data, status=status.HTTP_200_OK)
+        else:
+            user_id = kwargs.get("user_id")
+            user_serializer = UserSerializer(User.objects.get(id=user_id)) # model의 field값 user_id가 아니다.
+            return Response(user_serializer.data, status=status.HTTP_200_OK)
+
     """
     POST /user
     """
@@ -20,24 +37,34 @@ class UserView(APIView):
             return Response(user_serializer.data, status=status.HTTP_201_CREATED)  # client에게 JSON response 전달
         else:
             return Response(user_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    """
-    GET /user
-    GET /user/{user_id}
-    """
-
-    def get(self, request):
-        return Response("test ok", status=200)
 
     """
     PUT /user/{user_id}
     """
 
-    def put(self, request):
-        return Response("test ok", status=200)
+    def put(self, request, **kwargs):
+        if kwargs.get('user_id') is None:
+            return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
+        else:
+            user_id = kwargs.get('user_id')
+            user_object = User.objects.get(id=user_id)
+
+            update_user_serializer = UserSerializer(user_object, data=request.data)
+            if update_user_serializer.is_valid():
+                update_user_serializer.save()
+                return Response(update_user_serializer.data, status=status.HTTP_200_OK)
+            else:
+                return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
 
     """
     DELETE /user/{user_id}
     """
 
-    def delete(self, request):
-        return Response("test ok", status=200)
+    def delete(self, request, **kwargs):
+        if kwargs.get('user_id') is None:
+            return Response("invalid request", status=status.HTTP_400_BAD_REQUEST)
+        else:
+            user_id = kwargs.get('user_id')
+            user_object = User.objects.get(id=user_id)
+            user_object.delete()
+            return Response("Object Deleted", status=status.HTTP_200_OK)

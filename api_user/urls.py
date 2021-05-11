@@ -1,9 +1,9 @@
-from django.contrib import admin
 from django.urls import path
+from . import views
 
 app_name = "api_user"
-from . import views
 
 urlpatterns = [
     path('', views.UserView.as_view()),
+    path("<int:user_id>", views.UserView.as_view()),
 ]
