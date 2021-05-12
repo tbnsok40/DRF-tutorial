@@ -23,6 +23,7 @@ class UserView(APIView):
         else:
             user_id = kwargs.get("user_id")
             user_serializer = UserSerializer(User.objects.get(id=user_id)) # model의 field값 user_id가 아니다.
+            querySet = {}
             return Response(user_serializer.data, status=status.HTTP_200_OK)
 
     """
