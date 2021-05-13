@@ -24,6 +24,9 @@ const InputPlace = () => {
             password: password,
             address: address
         }).then(r => console.log(r));
+
+        window.location.replace("/")
+
     }
 
      return (
