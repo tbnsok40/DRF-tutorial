@@ -71,9 +71,7 @@ function Django() {
                     {completes && completes.map(com => (
                         <div key={com.id}>{com.user_id}</div>
                     ))}
-
                 </div>
-
             </div>
         </div>
     );

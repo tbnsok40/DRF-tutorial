@@ -4,8 +4,8 @@
 > ### Goal
 >✅ REST API: GET, POST, UPDATE, DELETE <br/>
 >✅ Test in POSTMAN <br/>
->☑️ Connect Frontend with React Server <br/>
->☑️ Input value from React, Store it in Django <br/>
+>✅ Connect Frontend with React Server <br/>
+>✅ Input value from React, Store it in Django <br/>
 
 
 > ### trouble shooting 
